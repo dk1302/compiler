@@ -1,0 +1,14 @@
+/home/unknownd/projects/compiler/bin/Debug/net9.0/compiler
+/home/unknownd/projects/compiler/bin/Debug/net9.0/compiler.deps.json
+/home/unknownd/projects/compiler/bin/Debug/net9.0/compiler.runtimeconfig.json
+/home/unknownd/projects/compiler/bin/Debug/net9.0/compiler.dll
+/home/unknownd/projects/compiler/bin/Debug/net9.0/compiler.pdb
+/home/unknownd/projects/compiler/obj/Debug/net9.0/compiler.GeneratedMSBuildEditorConfig.editorconfig
+/home/unknownd/projects/compiler/obj/Debug/net9.0/compiler.AssemblyInfoInputs.cache
+/home/unknownd/projects/compiler/obj/Debug/net9.0/compiler.AssemblyInfo.cs
+/home/unknownd/projects/compiler/obj/Debug/net9.0/compiler.csproj.CoreCompileInputs.cache
+/home/unknownd/projects/compiler/obj/Debug/net9.0/compiler.dll
+/home/unknownd/projects/compiler/obj/Debug/net9.0/refint/compiler.dll
+/home/unknownd/projects/compiler/obj/Debug/net9.0/compiler.pdb
+/home/unknownd/projects/compiler/obj/Debug/net9.0/compiler.genruntimeconfig.cache
+/home/unknownd/projects/compiler/obj/Debug/net9.0/ref/compiler.dll
