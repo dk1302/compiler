@@ -18,50 +18,184 @@ namespace compiler
                 contents = File.ReadAllText(file);
             }
 
-            string valid_tokens = @"{|}|\(|\)|;|int|return|[a-zA-Z]\w*|[0-9]+";
-            Regex pattern = new Regex(valid_tokens);
+            string valid_tokens =
+                @"{|}|\(|\)|;|int|return|[a-zA-Z]\w*|[0-9]+"; // index of all valid
+                                                              // tokens
 
-            var results = pattern.Matches(contents);
+            string check_id = @"[a-zA-Z]\w*";
+            string check_int = @"[0-9]+";
 
-            Console.WriteLine(results);
-            // foreach (Match match in results)
-            // {
-            //     no_of_tokens++;
-            // }
-            //
-            // string[] token_list = new string[no_of_tokens];
-            //
-            //
-            // foreach (Match match in results)
-            // {
-            //
-            // }
+            Regex pattern = new Regex(
+                valid_tokens); // regular expression class for easy pattern matching
+
+            var results = pattern.Matches(contents); // stores all tokens found
+
+            int counter = 0;
+
+            Parsing parse = new Parsing();
+
+            Component parse_check = parse.ParseProgram(counter)
         }
     }
 
-    class Token
+    class Component
     {
-        public string id = @"[a-zA-Z]\w*";
-        public string integer = @"[0-9]+";
+        public int counter;
+        public bool status;
+        public string info;
+
+        public Component(int counter_value, bool status_code, string info_message)
+        {
+            counter = counter_value;
+            status = status_code;
+            info = info_message;
+        }
     }
 
-    class func_decl
+    class Parsing
     {
-        public void Func(string name, statement stat) { }
-    }
+        public Component ParseProgram(List<Match> tokens, int counter,
+                                      string check_int, string check_id)
+        {
+            Component function = ParseFunc(tokens, counter, check_int, check_id);
 
-    class prog
-    {
-        public void Prog(func_decl func) { }
-    }
+            return function;
+        }
 
-    class statement
-    {
-        public void Return(expression exp) { }
-    }
+        public Component ParseFunc(List<Match> tokens, int counter, string check_int,
+                                   string check_id)
+        {
+            Component func = new Component(counter, true, "All good!");
 
-    class expression
-    {
-        public void Const(int integer) { }
+            Regex integer = new Regex(check_int);
+
+            if (!integer.IsMatch(tokens[counter].Value))
+            {
+                func.status = false;
+                func.info = "Function type is invalid!";
+                return func;
+            }
+
+            counter++;
+
+            Regex id = new Regex(check_id);
+
+            if (!id.IsMatch(tokens[counter].Value))
+            {
+                func.status = false;
+                func.info = "Invalid ID!";
+                return func;
+            }
+
+            counter++;
+
+            if (tokens[counter].Value != "(")
+            {
+                func.status = false;
+                func.info = "Invalid syntax!";
+                return func;
+            }
+
+            counter++;
+
+            if (tokens[counter].Value != ")")
+            {
+                func.status = false;
+                func.info = "Invalid syntax!";
+                return func;
+            }
+
+            counter++;
+
+            if (tokens[counter].Value != "{")
+            {
+                func.status = false;
+                func.info = "Invalid syntax!";
+                return func;
+            }
+
+            counter++;
+
+            Component statement = ParseStatement(tokens, counter, check_int);
+
+            if (!statement.status)
+            {
+                func.status = false;
+                func.info = "Invalid statement, " + statement.info;
+                return func;
+            }
+
+            counter = statement.counter;
+
+            if (tokens[counter].Value != "}")
+            {
+                func.status = false;
+                func.info = "Invalid syntax!";
+                return func;
+            }
+
+            counter++;
+
+            func.counter = counter;
+
+            return func;
+        }
+
+        public Component ParseStatement(List<Match> tokens, int counter,
+                                        string check_int)
+        {
+            Component statement = new Component(counter, true, "All good!");
+
+            if (tokens[counter].Value != "return")
+            {
+                statement.status = false;
+                statement.info = "Invalid command!";
+            }
+
+            counter++;
+
+            Component expression = ParseExpression(tokens, counter, check_int);
+
+            if (!expression.status)
+            {
+                statement.status = false;
+                statement.info = "Invalid expression, " + expression.info;
+            }
+
+            counter = expression.counter;
+
+            if (tokens[counter].Value != ";")
+            {
+                statement.status = false;
+                statement.info = "Invalid syntax!";
+            }
+
+            counter++;
+
+            statement.counter = counter;
+
+            return statement;
+        }
+
+        public Component ParseExpression(List<Match> tokens, int counter,
+                                         string check_int)
+        {
+
+            Component expression = new Component(counter, true, "All good!");
+
+            Regex integer = new Regex(check_int);
+
+            if (!integer.IsMatch(tokens[counter].Value))
+            {
+                expression.status = false;
+                expression.info = "Invalid type!";
+            }
+
+            counter++;
+
+            expression.counter = counter;
+
+            return expression;
+        }
     }
 }

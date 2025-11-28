@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/unknownd/projects/compiler/compiler.csproj": {}
+    "/home/unknownd/compiler/compiler.csproj": {}
   },
   "projects": {
-    "/home/unknownd/projects/compiler/compiler.csproj": {
+    "/home/unknownd/compiler/compiler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/unknownd/projects/compiler/compiler.csproj",
+        "projectUniqueName": "/home/unknownd/compiler/compiler.csproj",
         "projectName": "compiler",
-        "projectPath": "/home/unknownd/projects/compiler/compiler.csproj",
+        "projectPath": "/home/unknownd/compiler/compiler.csproj",
         "packagesPath": "/home/unknownd/.nuget/packages/",
-        "outputPath": "/home/unknownd/projects/compiler/obj/",
+        "outputPath": "/home/unknownd/compiler/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/unknownd/.nuget/NuGet/NuGet.Config"
@@ -59,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/unknownd/.dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/unknownd/.dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
